@@ -18,6 +18,8 @@ test('offers a dependency-free npx command with complete package metadata', () =
   assert.equal(packageJson.repository.url, 'git+https://github.com/ooocooc/open-skill-sunset.git');
   assert.equal(packageJson.homepage, 'https://github.com/ooocooc/open-skill-sunset#readme');
   assert.equal(packageJson.bugs.url, 'https://github.com/ooocooc/open-skill-sunset/issues');
+  assert.equal(packageJson.author.name, 'ooocooc');
+  assert.equal(packageJson.author.url, 'https://github.com/ooocooc');
   assert.equal(packageJson.publishConfig.access, 'public');
 
   const readme = fs.readFileSync(path.resolve('README.md'), 'utf8');
@@ -25,6 +27,10 @@ test('offers a dependency-free npx command with complete package metadata', () =
   assert.match(readme, /npm\/v\/skill-sunset/);
   assert.match(readme, /npm\/dm\/skill-sunset/);
   assert.match(readme, /docs\/assets\/skill-sunset-report\.png/);
+  assert.match(readme, /## Maintenance/);
+
+  const chineseReadme = fs.readFileSync(path.resolve('README.zh-CN.md'), 'utf8');
+  assert.match(chineseReadme, /## 维护信息/);
 });
 
 test('ships release documentation, contribution paths, and a real PNG report preview', () => {

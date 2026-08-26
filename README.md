@@ -160,6 +160,17 @@ GitHub Actions runs Gitleaks plus the full operating-system and Node.js matrix. 
 
 See [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), and [SECURITY.md](SECURITY.md).
 
+## Maintenance
+
+- Source maintainer: [@ooocooc](https://github.com/ooocooc)
+- npm publisher: [ooocoo](https://www.npmjs.com/~ooocoo)
+- Bugs and feature requests: [GitHub Issues](https://github.com/ooocooc/open-skill-sunset/issues)
+- Contributions: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Security reports: [SECURITY.md](SECURITY.md)
+- Release history: [CHANGELOG.md](CHANGELOG.md)
+
+The project is maintained on a best-effort basis without a guaranteed response SLA.
+
 ## Current boundary
 
 Version 0.2.0 implements static checks, conservative duplicate retirement, localized reports, path redaction, a gated command experiment harness, CI severity exits, and adversarial output tests. Current-provider capability snapshots, session-usage adapters, and task-quality adapters remain future evidence layers.

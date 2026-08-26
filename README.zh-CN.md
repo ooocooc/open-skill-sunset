@@ -160,6 +160,17 @@ GitHub Actions 会运行 Gitleaks 和完整的操作系统、Node.js 版本矩�
 
 参阅 [CHANGELOG.md](CHANGELOG.md)、[CONTRIBUTING.md](CONTRIBUTING.md) 和 [SECURITY.md](SECURITY.md)。
 
+## 维护信息
+
+- 源码维护者：[@ooocooc](https://github.com/ooocooc)
+- npm 发布账号：[ooocoo](https://www.npmjs.com/~ooocoo)
+- 缺陷与功能建议：[GitHub Issues](https://github.com/ooocooc/open-skill-sunset/issues)
+- 参与贡献：[CONTRIBUTING.md](CONTRIBUTING.md)
+- 安全报告：[SECURITY.md](SECURITY.md)
+- 版本记录：[CHANGELOG.md](CHANGELOG.md)
+
+本项目按维护者可用时间尽力维护，不承诺固定响应时限。
+
 ## 当前边界
 
 0.2.0 已实现静态检查、保守重复退役、双语报告、路径脱敏、带执行门槛的命令实验框架、CI 严重度退出码和对抗性输出测试。当前提供商能力快照、使用量适配器和任务质量适配器仍属于后续证据层。

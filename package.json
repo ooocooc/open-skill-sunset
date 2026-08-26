@@ -10,6 +10,10 @@
   "bugs": {
     "url": "https://github.com/ooocooc/open-skill-sunset/issues"
   },
+  "author": {
+    "name": "ooocooc",
+    "url": "https://github.com/ooocooc"
+  },
   "type": "module",
   "bin": {
     "skill-sunset": "bin/skill-sunset.js"
