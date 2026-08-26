@@ -12,7 +12,7 @@ function temporaryDirectory(prefix = 'skill-sunset-security-') {
   return fs.mkdtempSync(path.join(os.tmpdir(), prefix));
 }
 
-test('redacts home paths from every generated report artifact', () => {
+test('redacts absolute target paths from every generated report artifact', () => {
   const result = analyze(path.resolve('test/fixtures/sample-setup'));
   const output = temporaryDirectory();
   const reports = writeReports(result, output, 'en');
@@ -21,7 +21,7 @@ test('redacts home paths from every generated report artifact', () => {
     const content = fs.readFileSync(file, 'utf8');
     assert.ok(!content.includes(privatePrefix), `${path.basename(file)} exposed the home path`);
   }
-  assert.match(fs.readFileSync(reports.json, 'utf8'), /\$HOME\//);
+  assert.match(fs.readFileSync(reports.json, 'utf8'), /\$(?:HOME|ABSOLUTE)\//);
 });
 
 test('experiment commands receive a minimal environment unless full inheritance is explicit', () => {
