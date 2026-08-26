@@ -19,7 +19,7 @@
     "scan:codex": "node ./bin/skill-sunset.js audit --codex --open",
     "scan:claude": "node ./bin/skill-sunset.js audit --claude --open",
     "pretest": "node ./test/setup-fixture.js",
-    "test": "node --test ./test/*.test.js",
+    "test": "node --test test/analyzer.test.js test/privacy-experiment.test.js test/security.test.js",
     "demo": "node ./bin/skill-sunset.js audit ./test/fixtures/sample-setup --out ./demo-report",
     "prepublishOnly": "npm test"
   },

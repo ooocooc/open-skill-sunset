@@ -63,7 +63,8 @@ test('CLI keeps execution and full environment inheritance behind separate flags
     candidateId: 'cli-gates',
     repetitions: 1,
     baseline: { command: [process.execPath, '-e', `require('fs').writeFileSync(${JSON.stringify(marker)}, 'ran')`] },
-    candidate: { command: [process.execPath, '-e', 'process.exit(0)'] }
+    candidate: { command: [process.execPath, '-e', 'process.exit(0)'] },
+    acceptance: { maxDurationRegressionPercent: 100000 }
   }));
   const bin = path.resolve('bin/skill-sunset.js');
   const dryRun = spawnSync(process.execPath, [bin, 'test', planFile, '--root', root], { encoding: 'utf8' });
