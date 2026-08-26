@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Sunset"
+  short_description: "Audit stale generic agent rules"
+  default_prompt: "Audit this setup for obsolete generic Skills and agent Markdown instructions, then generate a safe remediation report."

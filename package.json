@@ -1,0 +1,38 @@
+{
+  "name": "skill-sunset",
+  "version": "0.2.0",
+  "description": "Find generic agent instructions that became stale, duplicated, or unnecessary as models and runtimes evolved.",
+  "type": "module",
+  "bin": {
+    "skill-sunset": "./bin/skill-sunset.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "integrations/",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "audit": "node ./bin/skill-sunset.js audit .",
+    "scan:codex": "node ./bin/skill-sunset.js audit --codex --open",
+    "scan:claude": "node ./bin/skill-sunset.js audit --claude --open",
+    "pretest": "node ./test/setup-fixture.js",
+    "test": "node --test ./test/*.test.js",
+    "demo": "node ./bin/skill-sunset.js audit ./test/fixtures/sample-setup --out ./demo-report",
+    "prepublishOnly": "npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "agents-md",
+    "claude-md",
+    "agent-skills",
+    "prompt-lint",
+    "codex",
+    "claude-code"
+  ],
+  "license": "MIT"
+}
