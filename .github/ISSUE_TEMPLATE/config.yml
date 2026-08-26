@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security policy
+    url: https://github.com/ooocooc/open-skill-sunset/security/policy
+    about: Report security concerns without publishing secrets or exploit details.

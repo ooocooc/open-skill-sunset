@@ -1,0 +1,58 @@
+name: False positive
+description: Report a finding that appears incorrect or overstated.
+title: "[False positive]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the rules. Remove credentials, private paths, and proprietary prompt content before submitting.
+  - type: input
+    id: version
+    attributes:
+      label: Skill Sunset version
+      description: For example, 0.2.0.
+    validations:
+      required: true
+  - type: input
+    id: rule
+    attributes:
+      label: Rule and verdict
+      description: Copy the rule ID and verdict shown in the report.
+      placeholder: broken-reference / UPDATE
+    validations:
+      required: true
+  - type: textarea
+    id: sanitized-input
+    attributes:
+      label: Sanitized minimal input
+      description: Provide the smallest redacted snippet that reproduces the finding.
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this a false positive?
+      description: Explain the context or evidence the rule missed.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - macOS
+        - Ubuntu or another Linux distribution
+        - Windows
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, tokens, private absolute paths, and proprietary content.
+          required: true

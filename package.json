@@ -2,6 +2,14 @@
   "name": "skill-sunset",
   "version": "0.2.0",
   "description": "Find generic agent instructions that became stale, duplicated, or unnecessary as models and runtimes evolved.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ooocooc/open-skill-sunset.git"
+  },
+  "homepage": "https://github.com/ooocooc/open-skill-sunset#readme",
+  "bugs": {
+    "url": "https://github.com/ooocooc/open-skill-sunset/issues"
+  },
   "type": "module",
   "bin": {
     "skill-sunset": "./bin/skill-sunset.js"
@@ -10,6 +18,7 @@
     "bin/",
     "src/",
     "integrations/",
+    "CHANGELOG.md",
     "README.md",
     "README.zh-CN.md",
     "LICENSE"
@@ -25,6 +34,9 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "agents-md",

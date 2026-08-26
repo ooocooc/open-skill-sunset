@@ -8,16 +8,40 @@ import { writeReports } from '../src/report.js';
 
 const fixture = path.resolve('test/fixtures/sample-setup');
 
-test('offers dependency-free download commands without global installation', () => {
+test('offers a dependency-free npx command with complete package metadata', () => {
   const packageJson = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf8'));
   assert.equal(packageJson.scripts['scan:codex'], 'node ./bin/skill-sunset.js audit --codex --open');
   assert.equal(packageJson.scripts['scan:claude'], 'node ./bin/skill-sunset.js audit --claude --open');
   assert.equal(packageJson.dependencies, undefined);
   assert.equal(packageJson.devDependencies, undefined);
+  assert.equal(packageJson.repository.url, 'git+https://github.com/ooocooc/open-skill-sunset.git');
+  assert.equal(packageJson.homepage, 'https://github.com/ooocooc/open-skill-sunset#readme');
+  assert.equal(packageJson.bugs.url, 'https://github.com/ooocooc/open-skill-sunset/issues');
+  assert.equal(packageJson.publishConfig.access, 'public');
 
   const readme = fs.readFileSync(path.resolve('README.md'), 'utf8');
-  assert.match(readme, /Run it — no install/);
-  assert.doesNotMatch(readme, /From the downloaded project folder, install the command once/);
+  assert.match(readme, /npx skill-sunset@latest audit --codex --open/);
+  assert.match(readme, /npm\/v\/skill-sunset/);
+  assert.match(readme, /npm\/dm\/skill-sunset/);
+  assert.match(readme, /docs\/assets\/skill-sunset-report\.png/);
+});
+
+test('ships release documentation, contribution paths, and a real PNG report preview', () => {
+  for (const file of [
+    'CHANGELOG.md',
+    'CONTRIBUTING.md',
+    'SECURITY.md',
+    '.github/ISSUE_TEMPLATE/false-positive.yml',
+    '.github/ISSUE_TEMPLATE/feature-request.yml',
+    '.github/ISSUE_TEMPLATE/compatibility.yml',
+    '.github/pull_request_template.md',
+    'docs/releases/v0.2.0.md'
+  ]) {
+    assert.ok(fs.existsSync(path.resolve(file)), `${file} should exist`);
+  }
+
+  const png = fs.readFileSync(path.resolve('docs/assets/skill-sunset-report.png'));
+  assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
 });
 
 test('finds deterministic and semantic review candidates', () => {

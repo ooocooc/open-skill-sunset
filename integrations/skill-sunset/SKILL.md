@@ -5,7 +5,13 @@ description: Audit generic AGENTS.md, CLAUDE.md, and SKILL.md instructions for d
 
 # Skill Sunset
 
-Run the local checker from the repository root:
+Run the published checker without a global install:
+
+```bash
+npx skill-sunset@latest audit <target> --lang auto --out <report-directory>
+```
+
+When developing from a repository checkout, use the local entry point instead:
 
 ```bash
 node ./bin/skill-sunset.js audit <target> --lang auto --out <report-directory>

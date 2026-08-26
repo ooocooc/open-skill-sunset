@@ -1,0 +1,70 @@
+name: Compatibility problem
+description: Report an OS, Node.js, Agent, shell, or filesystem compatibility issue.
+title: "[Compatibility]: "
+labels:
+  - bug
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Skill Sunset version
+      placeholder: 0.2.0
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Ubuntu or another Linux distribution
+        - Windows
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version and architecture
+      placeholder: macOS 15 / arm64
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node.js version
+      placeholder: 22.18.0
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Agent configuration
+      options:
+        - Codex
+        - Claude Code
+        - Custom directory
+        - Not agent-specific
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Sanitized command and output
+      description: Redact usernames, home directories, repository names, credentials, and private content.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, tokens, private absolute paths, and proprietary content.
+          required: true
