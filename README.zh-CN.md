@@ -17,9 +17,9 @@ npx skill-sunset@latest audit --codex --open
 
 无需全局安装。审计在本地只读运行；核心不会调用 AI API、消耗模型额度或读取模型提供商凭据。
 
-![由仓库测试样本真实生成的 Skill Sunset 报告](https://raw.githubusercontent.com/ooocooc/open-skill-sunset/main/docs/assets/skill-sunset-report.png)
+![由仓库测试样本真实生成的 Skill Sunset 报告动图](https://raw.githubusercontent.com/ooocooc/open-skill-sunset/main/docs/assets/skill-sunset-demo.gif)
 
-截图由当前 CLI 扫描 `test/fixtures/sample-setup` 真实生成：扫描 5 个文件、得到 11 条发现，并把重复退役、失效引用更新、渐进披露和行为假设分开显示。
+动图展示由当前 CLI 扫描 `test/fixtures/sample-setup` 真实生成的报告：扫描 5 个文件、得到 11 条发现，并把重复退役、失效引用更新、渐进披露和行为假设分开显示。
 
 ## 能做什么
 

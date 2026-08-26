@@ -15,7 +15,7 @@ All notable changes to Skill Sunset are documented in this file. The format is b
 - Absolute-path redaction in user-facing output, including `$HOME/...` handling.
 - GitHub Actions coverage for Node.js 20, 22, and 24 on Ubuntu, macOS, and Windows.
 - Gitleaks secret scanning in CI.
-- A real fixture-generated report screenshot, contributor guidance, security policy, issue forms, and a pull request template.
+- A real fixture-generated animated report walkthrough, contributor guidance, security policy, issue forms, and a pull request template.
 
 ### Security
 

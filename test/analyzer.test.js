@@ -26,14 +26,14 @@ test('offers a dependency-free npx command with complete package metadata', () =
   assert.match(readme, /npx skill-sunset@latest audit --codex --open/);
   assert.match(readme, /npm\/v\/skill-sunset/);
   assert.match(readme, /npm\/dm\/skill-sunset/);
-  assert.match(readme, /docs\/assets\/skill-sunset-report\.png/);
+  assert.match(readme, /docs\/assets\/skill-sunset-demo\.gif/);
   assert.match(readme, /## Maintenance/);
 
   const chineseReadme = fs.readFileSync(path.resolve('README.zh-CN.md'), 'utf8');
   assert.match(chineseReadme, /## 维护信息/);
 });
 
-test('ships release documentation, contribution paths, and a real PNG report preview', () => {
+test('ships release documentation, contribution paths, and a real animated report preview', () => {
   for (const file of [
     'CHANGELOG.md',
     'CONTRIBUTING.md',
@@ -47,8 +47,15 @@ test('ships release documentation, contribution paths, and a real PNG report pre
     assert.ok(fs.existsSync(path.resolve(file)), `${file} should exist`);
   }
 
-  const png = fs.readFileSync(path.resolve('docs/assets/skill-sunset-report.png'));
-  assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+  const gif = fs.readFileSync(path.resolve('docs/assets/skill-sunset-demo.gif'));
+  assert.equal(gif.subarray(0, 6).toString('ascii'), 'GIF89a');
+  let animationFrames = 0;
+  for (let index = 0; index < gif.length - 2; index += 1) {
+    if (gif[index] === 0x21 && gif[index + 1] === 0xf9 && gif[index + 2] === 0x04) {
+      animationFrames += 1;
+    }
+  }
+  assert.ok(animationFrames > 1, 'report preview should contain multiple animation frames');
 });
 
 test('finds deterministic and semantic review candidates', () => {
