@@ -12,7 +12,7 @@
   },
   "type": "module",
   "bin": {
-    "skill-sunset": "./bin/skill-sunset.js"
+    "skill-sunset": "bin/skill-sunset.js"
   },
   "files": [
     "bin/",

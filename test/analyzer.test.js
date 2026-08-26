@@ -12,6 +12,7 @@ test('offers a dependency-free npx command with complete package metadata', () =
   const packageJson = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf8'));
   assert.equal(packageJson.scripts['scan:codex'], 'node ./bin/skill-sunset.js audit --codex --open');
   assert.equal(packageJson.scripts['scan:claude'], 'node ./bin/skill-sunset.js audit --claude --open');
+  assert.equal(packageJson.bin['skill-sunset'], 'bin/skill-sunset.js');
   assert.equal(packageJson.dependencies, undefined);
   assert.equal(packageJson.devDependencies, undefined);
   assert.equal(packageJson.repository.url, 'git+https://github.com/ooocooc/open-skill-sunset.git');
