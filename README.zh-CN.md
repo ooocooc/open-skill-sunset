@@ -7,19 +7,23 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-> AI 已经进化，你的规则呢？
+> 你的 `AGENTS.md` 只增不减，哪些规则还值得继续占用上下文？
 
-审计长期积累的 `AGENTS.md`、`CLAUDE.md` 和通用 `SKILL.md`，避免旧时代补偿规则继续占用上下文。
+Skill Sunset 是面向 `AGENTS.md`、`CLAUDE.md` 和通用 `SKILL.md` 的本地只读退役审计工具。它把已确认的失效与重复，和“这条规则可能过时”的待验证假设分开；`TEST` 不等于 `RETIRE`。
 
 ```bash
 npx skill-sunset@latest audit --codex --open
 ```
 
-无需全局安装。审计在本地只读运行；核心不会调用 AI API、消耗模型额度或读取模型提供商凭据。
+无需全局安装。不修改被审计源文件，不调用 AI API，不消耗模型额度，也不读取模型提供商凭据。
 
-![由仓库测试样本真实生成的 Skill Sunset 报告动图](https://raw.githubusercontent.com/ooocooc/open-skill-sunset/main/docs/assets/skill-sunset-demo.gif)
+**第三方集成：** [HOL Guard v3.0.18](https://github.com/hashgraph-online/hol-guard/releases/tag/v3.0.18) 已加入针对已安装版 `skill-sunset audit` 命令面的安全扩展。[查看已合并的集成](https://github.com/hashgraph-online/hol-guard/pull/2611)。
 
-动图展示由当前 CLI 扫描 `test/fixtures/sample-setup` 真实生成的报告：扫描 5 个文件、得到 11 条发现，并把重复退役、失效引用更新、渐进披露和行为假设分开显示。
+如果 Skill Sunset 帮你少做了一次高风险清理，可以[给仓库一个 Star](https://github.com/ooocooc/open-skill-sunset)；如果判断有误，请[提交脱敏反例](https://github.com/ooocooc/open-skill-sunset/issues/new?template=false-positive.yml)。
+
+![由仓库测试样本真实生成的 Skill Sunset 报告](https://raw.githubusercontent.com/ooocooc/open-skill-sunset/main/docs/assets/skill-sunset-report.png)
+
+截图来自当前 CLI 扫描 `test/fixtures/sample-setup` 真实生成的报告：扫描 5 个文件、得到 11 条发现，并把重复退役、失效引用更新、渐进披露和行为假设分开显示。[打开完整动图](https://raw.githubusercontent.com/ooocooc/open-skill-sunset/main/docs/assets/skill-sunset-demo.gif)。
 
 ## 能做什么
 
