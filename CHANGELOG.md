@@ -4,6 +4,10 @@ All notable changes to Skill Sunset are documented in this file. The format is b
 
 ## [Unreleased]
 
+### Fixed
+
+- Separate environment-isolation assertions from timing verdicts to avoid scheduler-dependent CI failures. Deterministic boundary tests retain coverage of the unchanged 25% duration-regression threshold.
+
 ## [0.2.0] - 2026-08-26
 
 ### Added
