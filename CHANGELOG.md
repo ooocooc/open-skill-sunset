@@ -4,6 +4,8 @@ All notable changes to Skill Sunset are documented in this file. The format is b
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-09-01
+
 ### Added
 
 - Generate a local `activation-checklist.md` that tests expected paraphrases and a nearby negative case without reading conversation history or calling AI. Missing runtime load evidence remains `UNKNOWN` and can never justify `RETIRE`.
@@ -12,6 +14,7 @@ All notable changes to Skill Sunset are documented in this file. The format is b
 ### Fixed
 
 - Separate environment-isolation assertions from timing verdicts to avoid scheduler-dependent CI failures. Deterministic boundary tests retain coverage of the unchanged 25% duration-regression threshold.
+- Normalize activation-checklist report paths across operating systems.
 
 ## [0.2.0] - 2026-08-26
 
@@ -31,5 +34,6 @@ All notable changes to Skill Sunset are documented in this file. The format is b
 - Core audits remain read-only and do not call an AI service.
 - Findings marked `TEST` remain hypotheses until independently validated.
 
-[Unreleased]: https://github.com/ooocooc/open-skill-sunset/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/ooocooc/open-skill-sunset/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/ooocooc/open-skill-sunset/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/ooocooc/open-skill-sunset/releases/tag/v0.2.0

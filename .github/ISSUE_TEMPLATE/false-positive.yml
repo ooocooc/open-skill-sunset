@@ -12,7 +12,7 @@ body:
     id: version
     attributes:
       label: Skill Sunset version
-      description: For example, 0.2.0.
+      description: For example, 0.3.0.
     validations:
       required: true
   - type: input

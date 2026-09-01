@@ -1,6 +1,6 @@
 {
   "name": "skill-sunset",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Find generic agent instructions that became stale, duplicated, or unnecessary as models and runtimes evolved.",
   "repository": {
     "type": "git",

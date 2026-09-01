@@ -193,4 +193,4 @@ The project is maintained on a best-effort basis without a guaranteed response S
 
 ## Current boundary
 
-Version 0.2.0 implements static checks, conservative duplicate retirement, localized reports, path redaction, a gated command experiment harness, CI severity exits, and adversarial output tests. The unreleased report bundle also includes a local Skill-activation checklist; automated session-usage adapters and task-quality adapters remain future evidence layers.
+Version 0.3.0 implements static checks, conservative duplicate retirement, localized reports, path redaction, a gated command experiment harness, CI severity exits, adversarial output tests, and a local Skill-activation checklist. Automated session-usage adapters and task-quality adapters remain future evidence layers.
