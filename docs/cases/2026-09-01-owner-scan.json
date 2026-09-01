@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-01",
+  "evidence": "observed-local-scan",
+  "scope": "two-redacted-local-directories",
+  "privacy": "Source paths, Skill names, and instruction text are omitted. Counts and rule outcomes are retained.",
+  "cases": [
+    {
+      "id": "platform-specific-absolute-paths",
+      "observedCount": 5,
+      "verdict": "UPDATE",
+      "ruleId": "stale-absolute-path",
+      "scanHost": "macOS",
+      "pathPlatform": "Windows",
+      "reviewOutcome": "verify-platform-applicability"
+    },
+    {
+      "id": "oversized-entry-file",
+      "observedCount": 1,
+      "verdict": "DEMOTE",
+      "ruleId": "progressive-disclosure",
+      "observedLines": 2517,
+      "estimatedTokens": 17984
+    },
+    {
+      "id": "tool-required-for-every-task",
+      "observedCount": 4,
+      "verdict": "TEST",
+      "ruleId": "unconditional-tooling"
+    },
+    {
+      "id": "rule-pinned-to-model-name",
+      "observedCount": 1,
+      "verdict": "UPDATE",
+      "ruleId": "model-version-coupling",
+      "reviewOutcome": "kept-current-and-intentional"
+    }
+  ]
+}

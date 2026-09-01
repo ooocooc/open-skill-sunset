@@ -7,6 +7,7 @@ All notable changes to Skill Sunset are documented in this file. The format is b
 ### Added
 
 - Generate a local `activation-checklist.md` that tests expected paraphrases and a nearby negative case without reading conversation history or calling AI. Missing runtime load evidence remains `UNKNOWN` and can never justify `RETIRE`.
+- Document four redacted findings from a real maintainer setup, with public reproducible fixtures for platform-specific paths, oversized entry files, unconditional tool use, and model-name review.
 
 ### Fixed
 

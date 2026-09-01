@@ -70,6 +70,27 @@ test('finds deterministic and semantic review candidates', () => {
   assert.equal(result.summary.verdicts.RETIRE, 1);
 });
 
+test('ships four public reproducers for findings observed in the maintainer setup', () => {
+  const cases = [
+    ['examples/cases/platform-specific-paths', 'stale-absolute-path', 5],
+    ['test/fixtures/sample-setup/.agents/skills/large-skill', 'progressive-disclosure', 1],
+    ['examples/cases/always-use-tool', 'unconditional-tooling', 1],
+    ['examples/cases/model-pinned', 'model-version-coupling', 1]
+  ];
+  for (const [target, ruleId, expectedCount] of cases) {
+    const findings = analyze(path.resolve(target)).findings.filter((item) => item.ruleId === ruleId);
+    assert.equal(findings.length, expectedCount, `${target} should reproduce ${ruleId}`);
+  }
+
+  const snapshot = JSON.parse(fs.readFileSync(path.resolve('docs/cases/2026-09-01-owner-scan.json'), 'utf8'));
+  assert.equal(snapshot.evidence, 'observed-local-scan');
+  assert.deepEqual(snapshot.cases.map((item) => item.observedCount), [5, 1, 4, 1]);
+  assert.equal(snapshot.cases[0].reviewOutcome, 'verify-platform-applicability');
+  assert.equal(snapshot.cases[3].reviewOutcome, 'kept-current-and-intentional');
+  assert.match(fs.readFileSync(path.resolve('docs/cases.zh-CN.md'), 'utf8'), /4 个真实、脱敏、可重复的案例/);
+  assert.match(fs.readFileSync(path.resolve('docs/cases.md'), 'utf8'), /Four real, redacted, reproducible cases/);
+});
+
 test('writes a portable report bundle', () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'skill-sunset-test-'));
   const files = writeReports(analyze(fixture), directory, 'en');

@@ -37,6 +37,19 @@ Skill Sunset combines deterministic checks with conservative review hypotheses:
 
 No finding authorizes deletion. `TEST` means “evaluate this hypothesis,” not “a newer model made this rule unnecessary.”
 
+## Four real cases at a glance
+
+On 2026-09-01, the current version scanned two Skill directories actively used by the maintainer. Paths, Skill names, and instruction text were redacted:
+
+| Observed problem | Verdict | What it helps prevent |
+| --- | --- | --- |
+| One Skill contained five Windows-only paths when scanned on macOS | `UPDATE` | Surface instructions the current OS cannot run; first verify whether the Skill is intentionally Windows-only |
+| One always-loaded entry had 2,517 lines and about 17,984 tokens | `DEMOTE` | Carrying low-frequency documentation into every task |
+| Four rules required a tool for every task | `TEST` | Deleting an untested rule—or retaining unnecessary calls—without comparison evidence |
+| One rule named a concrete model | `UPDATE` | Prompt manual review; this item was kept because it was current and intentional |
+
+Each case has a public, sanitized reproducer: [read the full walkthrough](docs/cases.md) or [run the fixtures](examples/cases/README.md).
+
 ## Supported environments
 
 | Area | Supported and verified |
