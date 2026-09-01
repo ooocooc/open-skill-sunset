@@ -132,11 +132,14 @@ Always use Context7 for every task.
 ├── execution-prompt-codex.md
 ├── execution-prompt-claude.md
 ├── eval-plan.md
+├── activation-checklist.md
 ├── experiment-template.json
 └── rollback-manifest.json
 ```
 
 报告会把用户主目录下的目标路径脱敏为 `$HOME/...`，其他绝对目标显示为 `$ABSOLUTE/<名称>`。终端仍输出真实的本地报告位置，便于所有者打开文件。
+
+`activation-checklist.md` 用来验证：两种意思相近的请求是否都会让系统打开对应 Skill，以及一种相近但无关的请求是否不会误开。核心不会读取对话记录，也不会调用 AI。系统拿不出可靠的打开记录时，结果保持为“`不知道`”；没有记录绝不能作为 `RETIRE` 的依据。
 
 ## 结果标签
 
@@ -177,4 +180,4 @@ GitHub Actions 会运行 Gitleaks 和完整的操作系统、Node.js 版本矩�
 
 ## 当前边界
 
-0.2.0 已实现静态检查、保守重复退役、双语报告、路径脱敏、带执行门槛的命令实验框架、CI 严重度退出码和对抗性输出测试。当前提供商能力快照、使用量适配器和任务质量适配器仍属于后续证据层。
+0.2.0 已实现静态检查、保守重复退役、双语报告、路径脱敏、带执行门槛的命令实验框架、CI 严重度退出码和对抗性输出测试。尚未发布的报告包还增加了本地 Skill 启用检查清单；自动读取会话使用情况和任务质量的功能仍属于后续证据层。

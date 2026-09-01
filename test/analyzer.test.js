@@ -101,6 +101,10 @@ test('localizes finding content and supporting artifacts without changing verdic
   assert.equal(audit.findings.find((item) => item.ruleId === 'broken-reference').title, 'Referenced local file does not exist');
   assert.match(fs.readFileSync(files.markdown, 'utf8'), /## Findings/);
   assert.match(fs.readFileSync(files.evalPlan, 'utf8'), /Behavioral evaluation plan/);
+  const activationChecklist = fs.readFileSync(files.activationChecklist, 'utf8');
+  assert.match(activationChecklist, /Skill activation checklist/);
+  assert.match(activationChecklist, /UNKNOWN—not unused/);
+  assert.match(activationChecklist, /skills\/code-helper\/SKILL\.md/);
   assert.match(fs.readFileSync(files.htmlChinese, 'utf8'), /引用的本地文件不存在/);
   assert.equal(audit.summary.verdicts.RETIRE, result.summary.verdicts.RETIRE);
 });

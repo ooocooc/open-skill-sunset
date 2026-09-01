@@ -132,11 +132,14 @@ and `docs/deploy.md` does not exist.
 ├── execution-prompt-codex.md
 ├── execution-prompt-claude.md
 ├── eval-plan.md
+├── activation-checklist.md
 ├── experiment-template.json
 └── rollback-manifest.json
 ```
 
 Report contents redact targets below the user home as `$HOME/...`; other absolute targets are represented as `$ABSOLUTE/<name>`. The terminal still prints the real local report location so the owner can open it.
+
+`activation-checklist.md` helps verify whether a runtime actually loads each Skill for two expected paraphrases and rejects one nearby negative case. The core does not read conversation history or call AI. If the runtime exposes no reliable load event, the result stays `UNKNOWN`; absence of evidence never supports `RETIRE`.
 
 ## Verdicts
 
@@ -177,4 +180,4 @@ The project is maintained on a best-effort basis without a guaranteed response S
 
 ## Current boundary
 
-Version 0.2.0 implements static checks, conservative duplicate retirement, localized reports, path redaction, a gated command experiment harness, CI severity exits, and adversarial output tests. Current-provider capability snapshots, session-usage adapters, and task-quality adapters remain future evidence layers.
+Version 0.2.0 implements static checks, conservative duplicate retirement, localized reports, path redaction, a gated command experiment harness, CI severity exits, and adversarial output tests. The unreleased report bundle also includes a local Skill-activation checklist; automated session-usage adapters and task-quality adapters remain future evidence layers.

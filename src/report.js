@@ -167,6 +167,49 @@ function experimentTemplate(result) {
   };
 }
 
+function activationChecklist(result, locale) {
+  const isZh = locale === 'zh-CN';
+  const skills = result.files.filter((file) => file.kind === 'skill');
+  const heading = isZh ? '# Skill 启用检查清单' : '# Skill activation checklist';
+  const introduction = isZh
+    ? 'AI 通常能理解意思相近的说法。这份本地清单不靠关键词猜测，而是帮助你验证：提出某类请求时，系统是否真的打开了对应 Skill。Skill Sunset 不读取对话记录，也不自动调用 AI。'
+    : 'AI systems often understand paraphrases. This local checklist does not guess from keywords; it helps verify whether the runtime actually loaded the intended Skill for a request. Skill Sunset does not read conversation history or call an AI service.';
+  const boundaries = isZh
+    ? [
+        '固定 Agent、模型、版本、可用工具和 Skill 文件后再比较。',
+        '为每个 Skill 准备两种应该启用的不同说法，以及一种不应该启用的相近请求。',
+        '只记录“是否打开 Skill”等必要结果；不要复制私密对话、凭据或完整提示词。',
+        '系统没有可靠的打开记录时，结果写“不知道”，不能写“未使用”或据此建议退役。',
+        'Skill 被打开，只能证明系统找到了它，不能证明其中每条规则都被执行。'
+      ]
+    : [
+        'Freeze the Agent, model, version, available tools, and Skill files before comparing runs.',
+        'Prepare two different phrasings that should load each Skill and one nearby request that should not.',
+        'Record only the minimum load result; do not copy private conversations, credentials, or full prompts.',
+        'If the runtime exposes no reliable load event, record UNKNOWN—not unused—and never use it as retirement evidence.',
+        'A load event proves discovery only; it does not prove that every rule in the Skill was followed.'
+      ];
+  const lines = [heading, '', introduction, '', isZh ? '## 使用边界' : '## Boundaries', '', ...boundaries.map((item) => `- ${item}`), ''];
+  if (!skills.length) {
+    lines.push(isZh ? '## 当前结果' : '## Current result', '', isZh ? '本次扫描没有发现 Skill 文件。' : 'No Skill files were found in this scan.', '');
+    return lines.join('\n');
+  }
+  lines.push(isZh ? '## 待验证 Skill' : '## Skills to verify', '');
+  for (const skill of skills) {
+    lines.push(
+      `### \`${safeInline(skill.relativePath)}\``,
+      '',
+      `- ${isZh ? '应该启用的说法 A' : 'Should load, phrasing A'}:`,
+      `- ${isZh ? '应该启用的说法 B' : 'Should load, phrasing B'}:`,
+      `- ${isZh ? '不应该启用的相近请求' : 'Nearby request that should not load'}:`,
+      `- ${isZh ? '可验证的打开记录' : 'Verifiable load event'}: ${isZh ? '是 / 否 / 不知道' : 'yes / no / UNKNOWN'}`,
+      `- ${isZh ? '结论与日期' : 'Conclusion and date'}:`,
+      ''
+    );
+  }
+  return lines.join('\n');
+}
+
 function html(result, locale) {
   const u = UI[locale];
   const presentation = resultPresentation(result, locale);
@@ -225,6 +268,7 @@ export function writeReports(result, outputDirectory, locale = 'zh-CN') {
     codexPrompt: path.join(output, 'execution-prompt-codex.md'),
     claudePrompt: path.join(output, 'execution-prompt-claude.md'),
     evalPlan: path.join(output, 'eval-plan.md'),
+    activationChecklist: path.join(output, 'activation-checklist.md'),
     experimentTemplate: path.join(output, 'experiment-template.json'),
     rollback: path.join(output, 'rollback-manifest.json')
   };
@@ -236,6 +280,7 @@ export function writeReports(result, outputDirectory, locale = 'zh-CN') {
   fs.writeFileSync(files.codexPrompt, executionPrompt(localized, 'Codex', locale));
   fs.writeFileSync(files.claudePrompt, executionPrompt(localized, 'Claude Code', locale));
   fs.writeFileSync(files.evalPlan, evaluationPlan(localized, locale));
+  fs.writeFileSync(files.activationChecklist, activationChecklist(localized, locale));
   fs.writeFileSync(files.experimentTemplate, `${JSON.stringify(experimentTemplate(localized), null, 2)}\n`);
   fs.writeFileSync(files.rollback, `${JSON.stringify({ version: 1, status: 'not-applied', changes: [], note: locale === 'zh-CN' ? '由执行 Agent 在任何文件改动前填写。' : 'Populated by the execution agent before any file mutation.' }, null, 2)}\n`);
   return files;

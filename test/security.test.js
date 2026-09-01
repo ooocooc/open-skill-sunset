@@ -67,6 +67,26 @@ test('redacts possible secret values from every generated artifact', () => {
   }
 });
 
+test('keeps activation evidence local, minimal, and unknown when loading cannot be proven', () => {
+  const root = temporaryDirectory();
+  const skillDirectory = path.join(root, 'review-helper');
+  fs.mkdirSync(skillDirectory);
+  fs.writeFileSync(path.join(skillDirectory, 'SKILL.md'), [
+    '---',
+    'name: review-helper',
+    'description: Review code changes and pull requests.',
+    '---',
+    '# Review helper'
+  ].join('\n'));
+  const output = temporaryDirectory('skill-sunset-activation-');
+  const files = writeReports(analyze(root), output, 'zh-CN');
+  const checklist = fs.readFileSync(files.activationChecklist, 'utf8');
+  assert.match(checklist, /review-helper\/SKILL\.md/);
+  assert.match(checklist, /是 \/ 否 \/ 不知道/);
+  assert.match(checklist, /不能写“未使用”或据此建议退役/);
+  assert.doesNotMatch(checklist, /Review code changes and pull requests/);
+});
+
 test('does not retire equal SKILL.md entries when their bundles differ', () => {
   const root = temporaryDirectory();
   for (const [directoryName, scriptBody] of [['copy-a', 'console.log("a")'], ['copy-b', 'console.log("b")']]) {

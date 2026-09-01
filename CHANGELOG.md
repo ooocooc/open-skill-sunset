@@ -4,6 +4,10 @@ All notable changes to Skill Sunset are documented in this file. The format is b
 
 ## [Unreleased]
 
+### Added
+
+- Generate a local `activation-checklist.md` that tests expected paraphrases and a nearby negative case without reading conversation history or calling AI. Missing runtime load evidence remains `UNKNOWN` and can never justify `RETIRE`.
+
 ### Fixed
 
 - Separate environment-isolation assertions from timing verdicts to avoid scheduler-dependent CI failures. Deterministic boundary tests retain coverage of the unchanged 25% duration-regression threshold.
