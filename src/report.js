@@ -197,7 +197,7 @@ function activationChecklist(result, locale) {
   lines.push(isZh ? '## 待验证 Skill' : '## Skills to verify', '');
   for (const skill of skills) {
     lines.push(
-      `### \`${safeInline(skill.relativePath)}\``,
+      `### \`${safeInline(skill.relativePath.split(path.sep).join('/'))}\``,
       '',
       `- ${isZh ? '应该启用的说法 A' : 'Should load, phrasing A'}:`,
       `- ${isZh ? '应该启用的说法 B' : 'Should load, phrasing B'}:`,
